@@ -9,31 +9,59 @@ import java.util.Optional;
 
 @Service
 public class ReviewService {
-    private final ReviewRepository reviewRepository;
 
+    private final ReviewRepository reviewRepository;
 
     public ReviewService(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
-    public Review createReview(Review review){
+
+    public Review createReview(Review review) {
         return reviewRepository.save(review);
-
     }
 
-   public List<Review> getAllReview(){
+    public List<Review> getAllReviews() {
         return reviewRepository.findAll();
-   }
-   public Optional<Review> getReviewById(Long id){
-        return reviewRepository.findById(id);
-   }
-   public Review updateReview(Long id,Review review){
-        Review existingReview = reviewRepository.findById(id).orElseThrow(()->new RuntimeException("Review not found"));
-        existingReview.setRating(review.getRating());
-        existingReview.setComment(review.getComment());
-        return reviewRepository.save(existingReview);
-
     }
-    public void deleteReview(Long id){
-        reviewRepository.deleteById(id );
+
+    public Optional<Review> getReviewById(Long id) {
+        return reviewRepository.findById(id);
+    }
+
+    public List<Review> getReviewsByUserId(Long userId) {
+        return reviewRepository.findByUserId(userId);
+    }
+
+    public List<Review> getReviewsByProductId(Long productId) {
+        return reviewRepository.findByProductId(productId);
+    }
+
+    public Optional<Review> updateReview(
+            Long id,
+            Review reviewDetails) {
+
+        return reviewRepository.findById(id)
+                .map(existingReview -> {
+
+                    existingReview.setRating(
+                            reviewDetails.getRating()
+                    );
+
+                    existingReview.setComment(
+                            reviewDetails.getComment()
+                    );
+
+                    return reviewRepository.save(existingReview);
+                });
+    }
+
+    public boolean deleteReview(Long id) {
+
+        if (reviewRepository.existsById(id)) {
+            reviewRepository.deleteById(id);
+            return true;
+        }
+
+        return false;
     }
 }

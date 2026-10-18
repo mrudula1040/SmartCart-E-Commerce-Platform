@@ -1,6 +1,7 @@
 package com.project.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "wishlist")
@@ -11,10 +12,12 @@ public class Wishlist {
 
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
+    @NotNull(message = "user is required")
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "product_id",nullable = false)
+    @NotNull(message = "user is required")
     private Product product;
 
     public Wishlist(){

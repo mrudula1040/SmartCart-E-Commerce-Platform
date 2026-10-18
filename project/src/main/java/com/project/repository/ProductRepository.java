@@ -1,13 +1,20 @@
 package com.project.repository;
 
-import com.project.entity.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 
-public interface ProductRepository extends JpaRepository<Product,Long> {
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-    List<Product> findByProductNameContainingIgnoreCase(String productName);
+import com.project.entity.Product;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    List<Product> findByProductNameContainingIgnoreCase(String keyword);
+
     List<Product> findByCategoryId(Long categoryId);
-    List<Product> findByPriceBetween(Double minPrice , Double maxPrice);
+
+    List<Product> findByPriceBetween(Double minPrice, Double maxPrice);
+
+    Page<Product> findAll(Pageable pageable);
 }

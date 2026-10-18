@@ -1,7 +1,8 @@
 package com.project.controller;
 
-import com.project.entity.Inventory;
+import com.project.dto.InventoryDTO;
 import com.project.service.InventoryService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,31 +11,69 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/inventory")
 public class InventoryController {
+
     private final InventoryService inventoryService;
 
     public InventoryController(InventoryService inventoryService) {
         this.inventoryService = inventoryService;
     }
-    @PostMapping
-    public ResponseEntity<Inventory> saveInventory(@RequestBody Inventory inventory){
-        return ResponseEntity.ok(inventoryService.saveInventory(inventory));
-    }
-    @GetMapping
-    public ResponseEntity<List<Inventory>> getAllInventory(){
-        return ResponseEntity.ok(inventoryService.getAllInventory());
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<Inventory> getInventoryById(@PathVariable Long id){
-        return inventoryService.getInventoryById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-    }
-    @PutMapping("/{id}/stock")
-    public ResponseEntity<Inventory> updateStock(@PathVariable Long id,@RequestBody Integer quantity){
-        return ResponseEntity.ok(inventoryService.updateStock(id, quantity));
 
+    @PostMapping
+    public ResponseEntity<InventoryDTO> createInventory(
+            @Valid @RequestBody InventoryDTO inventoryDTO) {
+
+        return ResponseEntity.ok(
+                inventoryService.createInventory(inventoryDTO)
+        );
     }
+
+    @GetMapping
+    public ResponseEntity<List<InventoryDTO>> getAllInventory() {
+
+        return ResponseEntity.ok(
+                inventoryService.getAllInventory()
+        );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<InventoryDTO> getInventoryById(
+            @PathVariable Long id) {
+
+        return inventoryService.getInventoryById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<InventoryDTO> getInventoryByProductId(
+            @PathVariable Long productId) {
+
+        return inventoryService.getInventoryByProductId(productId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<InventoryDTO> updateInventory(
+            @PathVariable Long id,
+            @Valid @RequestBody InventoryDTO inventoryDTO) {
+
+        return inventoryService.updateInventory(
+                        id,
+                        inventoryDTO
+                )
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
-   public ResponseEntity<Void> deleteInventory(@PathVariable Long id){
-        inventoryService.deleteInventory(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> deleteInventory(
+            @PathVariable Long id) {
+
+        if (inventoryService.deleteInventory(id)) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }
