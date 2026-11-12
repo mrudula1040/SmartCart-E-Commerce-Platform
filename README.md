@@ -67,8 +67,33 @@ Main tables include:
 
 The database schema can be created by Hibernate/JPA configuration or imported from the provided SQL script, where applicable.
 
+## Project Preview
+ This is a Full Stack Java Development E-commerce Project built using Java, Spring Boot, Spring Security, React JS, Vite, MySQL
+ 
+## Admin Dashboard
 <img width="1883" height="956" alt="10_Admin_Dashboard" src="https://github.com/user-attachments/assets/241ee315-da55-4a58-b0eb-3624988210c8" />
 
+<img width="1875" height="965" alt="11_Admin_Dashboard" src="https://github.com/user-attachments/assets/a21c251a-559f-4d3e-a2b8-8176abd017ad" />
+
+## Products
+<img width="1893" height="957" alt="3_Products png" src="https://github.com/user-attachments/assets/4d88590a-cc90-48d7-8845-55dd33e8bef8" />
+
+## Cart Payment Method
+<img width="1815" height="882" alt="7_Cart_Products_Payment_methods" src="https://github.com/user-attachments/assets/e1e7b2c6-db62-4514-9424-7e24ab7e2ab6" />
+
+## Admin Inventory Management
+<img width="1885" height="952" alt="14_Admin_Inventory_mangement" src="https://github.com/user-attachments/assets/9ad3d780-9c4a-4439-a991-edcbc239a353" />
+
+## Admin Order
+<img width="1764" height="957" alt="15_Admin_order" src="https://github.com/user-attachments/assets/df201e61-e599-46cf-abaf-2eca6645499e" />
+
+## Review
+<img width="1870" height="965" alt="5_Product_Review png" src="https://github.com/user-attachments/assets/35aa4da2-d521-4dd4-b028-922dc38590f7" />
+
+## Search Filter
+<img width="1874" height="942" alt="4_Search_Filter png" src="https://github.com/user-attachments/assets/b49984fe-7309-4da2-840d-46100bea9eab" />
+
+## More Screenshots $ Full Documentation 
 
 
 ## Prerequisites
