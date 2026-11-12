@@ -67,6 +67,8 @@ Main tables include:
 
 The database schema can be created by Hibernate/JPA configuration or imported from the provided SQL script, where applicable.
 
+<img width="1883" height="956" alt="10_Admin_Dashboard" src="https://github.com/user-attachments/assets/241ee315-da55-4a58-b0eb-3624988210c8" />
+
 
 
 ## Prerequisites
